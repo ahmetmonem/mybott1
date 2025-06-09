@@ -61,8 +61,8 @@
     
     <!-- Fire Model -->
     <model name="fire">
-      <pose>3 0 0.5 0 0 0</pose>
-      <static>false</static>
+      <pose>-3 0 0.5 0 0 0</pose>
+      <static>true</static>
       
       <!-- Base cylinder for fire -->
       <link name="fire_base">
