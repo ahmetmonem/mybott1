@@ -1,6 +1,0 @@
-setup.py
-articubot_one/__init__.py
-articubot_one.egg-info/PKG-INFO
-articubot_one.egg-info/SOURCES.txt
-articubot_one.egg-info/dependency_links.txt
-articubot_one.egg-info/top_level.txt
