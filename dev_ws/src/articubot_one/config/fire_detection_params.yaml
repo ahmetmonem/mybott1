@@ -1,0 +1,48 @@
+fire_detector:
+  ros__parameters:
+    # HSV color range for fire detection
+    fire_detection:
+      # Primary fire color range (red-orange)
+      lower_hsv_1: [0, 50, 50]      # [Hue, Saturation, Value]
+      upper_hsv_1: [35, 255, 255]
+      
+      # Secondary fire color range (deep red)
+      lower_hsv_2: [160, 50, 50]
+      upper_hsv_2: [180, 255, 255]
+      
+      # Minimum area to consider as fire (pixels)
+      min_fire_area: 1000
+      
+      # Fire area threshold to start spraying
+      spray_threshold: 2000
+      
+      # Image processing parameters
+      morphology_kernel_size: 5
+      gaussian_blur_kernel: 5
+      
+    # Robot movement parameters
+    movement:
+      linear_speed: 0.3           # m/s
+      angular_speed: 0.5          # rad/s
+      search_angular_speed: 0.3   # rad/s when searching
+      
+      # Control tolerances
+      angular_tolerance: 50       # pixels
+      centering_tolerance: 100    # pixels
+      
+    # Water pump parameters
+    water_pump:
+      max_angle: 1.57            # 90 degrees in radians
+      min_angle: -1.57           # -90 degrees in radians
+      pump_speed: 1.0            # rad/s
+      
+    # Camera parameters
+    camera:
+      image_width: 640
+      image_height: 480
+      horizontal_fov: 1.089      # radians
+      
+    # Safety parameters
+    safety:
+      max_approach_distance: 1.0  # meters - minimum safe distance from fire
+      emergency_stop_area: 5000   # pixel area threshold for emergency stop
