@@ -61,7 +61,7 @@ def generate_launch_description():
         name='fire_detector',
         parameters=[{
             'use_sim_time': True,
-            'tuning_mode': False,
+            'tuning_mode': True,
             'h_min': 0,
             'h_max': 20,
             's_min': 150,

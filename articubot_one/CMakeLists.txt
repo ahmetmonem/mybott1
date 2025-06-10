@@ -26,13 +26,19 @@ install(DIRECTORY
   description
   launch
   worlds
+  models
   DESTINATION share/${PROJECT_NAME}
 )
 
-# Install Python scripts
+# Install all Python scripts
 install(PROGRAMS
   scripts/detect_fire.py
   scripts/follow_fire.py
+  scripts/follow_fire_fast.py
+  scripts/debug_fire.py
+  scripts/follow_fire_exploration.py
+  scripts/detect_red.py
+  scripts/test_move.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

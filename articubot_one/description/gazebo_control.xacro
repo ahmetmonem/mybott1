@@ -4,7 +4,7 @@
     <gazebo>
         <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
 
-            <!-- Wheel Information -->
+            <!-- Wheel Information - Using front wheels for diff drive -->
             <left_joint>left_front_wheel_joint</left_joint>
             <right_joint>right_front_wheel_joint</right_joint>
             <wheel_separation>0.35</wheel_separation>
@@ -14,7 +14,7 @@
             <max_wheel_torque>200</max_wheel_torque>
             <max_wheel_acceleration>10.0</max_wheel_acceleration>
 
-            <!-- Commands -->
+            <!-- Topic -->
             <command_topic>cmd_vel</command_topic>
             
             <!-- Output -->

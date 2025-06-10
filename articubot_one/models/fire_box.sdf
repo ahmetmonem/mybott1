@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="fire_box">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.6</size> </box>
+        </geometry>
+        <material>
+          <ambient>1 0.4 0 1</ambient>   <diffuse>1 0.4 0 1</diffuse>   <specular>0.1 0.1 0.1 1</specular>
+          <emissive>8 2 0 1</emissive> </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.6</size> </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <light name="fire_light" type="point">
+      <pose>0 0 0.4 0 0 0</pose> <diffuse>1 0.6 0</diffuse> <specular>0.2 0.2 0.1</specular>
+      <attenuation>
+        <range>3</range>      <constant>0.05</constant> <linear>0.05</linear>   <quadratic>0.005</quadratic> </attenuation>
+      <cast_shadows>false</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+  </model>
+</sdf>
