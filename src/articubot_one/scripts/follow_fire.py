@@ -37,8 +37,8 @@ class FireFollower(Node):
             10
         )
         
-        # Publisher for cmd_vel - publish directly to the controller
-        self.cmd_pub = self.create_publisher(Twist, '/diff_cont/cmd_vel_unstamped', 10)
+        # Publisher for cmd_vel_tracker (which twist_mux will forward)
+        self.cmd_pub = self.create_publisher(Twist, '/cmd_vel_tracker', 10)
         
         # Timer for control loop
         self.timer = self.create_timer(0.1, self.control_loop)

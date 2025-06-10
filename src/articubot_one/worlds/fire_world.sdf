@@ -17,55 +17,21 @@
     </scene>
     
     <!-- Sun -->
-    <light name="sun" type="directional">
-      <cast_shadows>1</cast_shadows>
-      <pose>0 0 10 0 0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <constant>0.9</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
-    </light>
+    <include>
+      <uri>model://sun</uri>
+    </include>
     
     <!-- Ground plane -->
-    <model name="ground_plane">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>100 100</size>
-            </plane>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-          </material>
-        </visual>
-      </link>
-    </model>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
     
-    <!-- Fire Model -->
+    <!-- Fire Model (Simple Red Cylinder) -->
     <model name="fire">
-      <pose>-3 0 0.5 0 0 0</pose>
+      <pose>2 0 0.5 0 0 0</pose>
       <static>true</static>
       
-      <!-- Base cylinder for fire -->
-      <link name="fire_base">
+      <link name="fire_link">
         <visual name="visual">
           <geometry>
             <cylinder>
@@ -74,115 +40,53 @@
             </cylinder>
           </geometry>
           <material>
-            <ambient>1.0 0.3 0.0 0.8</ambient>
-            <diffuse>1.0 0.3 0.0 0.8</diffuse>
-            <specular>1.0 0.5 0.0 0.8</specular>
-            <emissive>1.0 0.3 0.0 1.0</emissive>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0.5 0 0 1</emissive>
           </material>
-          <transparency>0.2</transparency>
         </visual>
         
-        <!-- Light to simulate fire glow -->
-        <light name="fire_light" type="point">
-          <pose>0 0 0.5 0 0 0</pose>
-          <diffuse>1.0 0.5 0.1 1</diffuse>
-          <specular>1.0 0.5 0.1 1</specular>
-          <attenuation>
-            <range>10</range>
-            <constant>0.5</constant>
-            <linear>0.1</linear>
-            <quadratic>0.01</quadratic>
-          </attenuation>
-          <cast_shadows>true</cast_shadows>
-        </light>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>1.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
       </link>
+    </model>
+    
+    <!-- Additional fire for testing -->
+    <model name="fire2">
+      <pose>-2 2 0.5 0 0 0</pose>
+      <static>true</static>
       
-      <!-- Inner flame (smaller, brighter) -->
-      <link name="inner_flame">
-        <pose>0 0 0.2 0 0 0</pose>
+      <link name="fire_link">
         <visual name="visual">
           <geometry>
             <cylinder>
-              <radius>0.15</radius>
-              <length>0.6</length>
+              <radius>0.25</radius>
+              <length>0.8</length>
             </cylinder>
           </geometry>
           <material>
-            <ambient>1.0 0.8 0.0 0.9</ambient>
-            <diffuse>1.0 0.8 0.0 0.9</diffuse>
-            <specular>1.0 1.0 0.5 0.9</specular>
-            <emissive>1.0 0.8 0.0 1.0</emissive>
+            <ambient>1 0.5 0 1</ambient>
+            <diffuse>1 0.5 0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <emissive>0.5 0.2 0 1</emissive>
           </material>
-          <transparency>0.1</transparency>
         </visual>
-      </link>
-      
-      <!-- Connect the flame parts -->
-      <joint name="flame_joint" type="fixed">
-        <parent>fire_base</parent>
-        <child>inner_flame</child>
-      </joint>
-      
-      <!-- Plugin to make fire move/flicker -->
-      <plugin name="fire_movement" filename="libgazebo_ros_planar_move.so">
-        <ros>
-          <namespace>/fire</namespace>
-        </ros>
-        <update_rate>10</update_rate>
-        <publish_rate>10</publish_rate>
-        <publish_odom>false</publish_odom>
-        <publish_odom_tf>false</publish_odom_tf>
-      </plugin>
-    </model>
-    
-    <!-- Additional obstacles -->
-    <model name="wall_1">
-      <pose>5 2 0.5 0 0 0</pose>
-      <static>true</static>
-      <link name="link">
+        
         <collision name="collision">
           <geometry>
-            <box>
-              <size>0.2 4 1</size>
-            </box>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.8</length>
+            </cylinder>
           </geometry>
         </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.2 4 1</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.5 0.5 0.5 1</ambient>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-    
-    <model name="wall_2">
-      <pose>5 -2 0.5 0 0 0</pose>
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.2 4 1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.2 4 1</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.5 0.5 0.5 1</ambient>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
-          </material>
-        </visual>
       </link>
     </model>
     

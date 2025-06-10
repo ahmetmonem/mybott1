@@ -39,5 +39,4 @@
 
   <!-- Include ROS2 Control -->
 <!-- <xacro:include filename="ros2_control.xacro" /> -->
-<xacro:include filename="gazebo_control.xacro" />
 </robot>
